@@ -1,0 +1,521 @@
+@font-face {
+    font-family: 'Safira March';
+    src: url('/static/assets/font/Safira\ March\ Personal\ Use\ Only.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LibreBaskerville';
+    src: url('/static/assets/font/LibreBaskerville-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding-top: 65px;
+    background-color: #f4f4f4;
+    display: block;
+}
+
+/* Jika layar bukan desktop, sembunyikan semua konten */
+body.mobile-blocked * {
+    display: none !important;
+}
+
+/* Tampilan khusus untuk peringatan */
+body.mobile-blocked::before {
+    content: "Harap buka di Desktop";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+/* Animasi Muncul Naik */
+@keyframes rise-in {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animasi Keluar Turun */
+@keyframes rise-out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+}
+
+/* Efek untuk Section */
+.section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Tambahkan kelas ini saat terlihat */
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+    animation: rise-in 0.6s ease-out;
+}
+
+/* Saat section keluar dari layar */
+.section.hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: rise-out 0.6s ease-out;
+}
+
+/* Header tetap di atas tanpa transparansi */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /* Tetap di atas */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #bcab95; /* Warna tetap */
+    padding: 20px;
+    z-index: 1000; /* Supaya tidak tertutup elemen lain */
+}
+
+.logo {
+    font-family: "Safira March", sans-serif;
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+    font-family: "LibreBaskerville", sans-serif;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #3c2a22;
+    font-size: 18px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Menyesuaikan dropdown menu */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none; /* Sembunyikan menu awalnya */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    list-style: none;
+    padding: 5px 0;
+    margin: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    min-width: 90px;
+}
+
+.dropdown-menu li {
+    white-space: nowrap;
+}
+
+.dropdown-menu li a {
+    text-decoration: none;
+    color: #3c2a22;
+    font-size: 18px;
+    display: block;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #ddd;
+}
+
+/* Munculkan dropdown saat hover */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.about {
+    position: relative;
+    padding: 60px 8%;
+    background-color: #f4f1ec;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    height: 92vh;
+}
+
+.image {
+    position: absolute;
+    left: -12%;
+    bottom: -190px;
+    width: 112vh;
+    height: 112vh;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.text-container {
+    position: absolute;
+    right: 8%;
+    top: 30%;
+    transform: translateY(-50%);
+    text-align: right;
+    width: 75%;
+}
+
+.about-title {
+    position: relative;
+    display: inline-block;
+    font-size: 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.about-title::after {
+    content: "";
+    position: absolute;
+    right: 0px;
+    bottom: -5px; /* Jarak garis dari teks */
+    width: 30%;
+    height: 5px; /* Ketebalan garis */
+    background-color: #bcab95; /* Warna merah */
+    border-radius: 2px;
+}
+
+.about-name {
+    font-family: "Safira March", sans-serif;
+    font-size: 100px;
+    font-weight: bold;
+    line-height: 1.2;
+    max-width: 150%;
+    margin-bottom: 20px;
+    letter-spacing: 5px; /* Menambahkan jarak antar huruf */    
+}
+
+.box {
+    position: absolute;
+    right: 8%;
+    top: 68%;
+    transform: translateY(-50%);
+    text-align: right;
+    width: 45%;
+}
+
+.about-description {
+    font-family: "LibreBaskerville", cursive;
+    font-size: 20px;
+    line-height: 1.2;
+    text-align: center;
+
+}
+
+.contact {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.highlight {
+    color: #bcab95;
+    font-weight: bold;
+}
+
+/* PORTOFOLIO SECTION */
+.portfolio-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 60px 8%;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    width: 100%
+}
+
+.portfolio-title {
+    margin-top: 80px;
+    font-size: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: 'Safira March', sans-serif;
+    text-align: center;
+    position: relative;
+}
+
+.portfolio-title::after {
+    content: "";
+    display: block;
+    width: 60px; /* Panjang garis */
+    height: 5px; /* Ketebalan garis */
+    background-color: #bcab95; /* Warna kuning */
+    margin: 8px auto 0; /* Jarak dari teks */
+    border-radius: 3px; /* Ujung sedikit melengkung */
+}     
+
+.portfolio-grid {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 50px;
+    width: 100%;
+    margin-left: 0;
+}
+
+.portfolio-card {
+    width: 400px;
+    height: 300px;
+    perspective: 1000px;
+    margin-right: 0px;
+}
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+.portfolio-card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+.card-front, .card-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    background: #f4f1ec;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+}
+.card-front {
+    z-index: 2;
+}
+.card-front img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.card-back {
+    transform: rotateY(180deg);
+    padding: 20px;
+}
+
+.portfolio-grid {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-left: 0;
+}
+
+/* PORTOFOLIO */
+.portfolio-card {
+    width: 400px;
+    height: 300px;
+    perspective: 1000px;
+    position: relative;
+    transition: transform 0.3s ease-in-out; /* Animasi halus */
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease-in-out;
+}
+
+/* Efek Flip saat Hover */
+.portfolio-card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Efek Membesar dan Mengecil */
+.portfolio-grid:hover .portfolio-card {
+    transform: scale(0.9); /* Semua kartu mengecil saat kursor ada di dalam grid */
+}
+
+.portfolio-card:hover {
+    transform: scale(1.1) !important; /* Kartu yang disorot akan membesar */
+}
+
+/* Card Depan dan Belakang */
+.card-front, .card-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    background: #f4f1ec;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.card-front {
+    z-index: 2;
+}
+
+.card-front img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}  
+
+/* MY STUDY */
+
+.study-section {
+    background-color: #ffffff;
+    padding: 80px 10%;
+}
+
+.wrap-study{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.study-content {
+    flex: 1;
+    max-width: 50%;
+}
+
+.study-title {
+    font-size: 50px;
+    font-family: 'Safira March', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.study-title::after {
+    content: "";
+    display: block;
+    width: 60px; /* Panjang garis */
+    height: 5px; /* Ketebalan garis */
+    background-color: #bcab95; /* Warna kuning */
+    margin: 8px auto 0; /* Jarak dari teks */
+    border-radius: 3px; /* Ujung sedikit melengkung */
+}
+
+.study-description {
+    font-size: 18px;
+    font-family: 'LibreBaskerville', sans-serif;
+    text-align: justify;
+    color: #000000;
+    margin-bottom: 30px;
+}
+
+.study-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.study-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.study-item img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.study-item h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.inference-btn {
+    background-color: #c2a483;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.inference-btn:hover {
+    background-color: #a88c6c;
+}
+
+.study-image img {
+    width: 450px;
+}   
+
+/* loading SECTION */
+

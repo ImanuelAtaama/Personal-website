@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header Design</title>
+    <link rel="stylesheet" href="/static/assets/css/style.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <header id="main-header">
+        <div class="logo">PACEel</div>
+        <nav>
+            <ul>
+                <li><a href="#about">Home</a></li>
+                <li class="dropdown">
+                    <a href="#portofolio">Portfolio</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="cv.pdf" download>CV</a></li>
+                    </ul>
+                </li>
+                <li><a href="#study">Skripsi</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="about" class="about">
+        <div class="image">
+            <img src="/static/assets/image/profil.jpg" alt="Profile Picture">
+        </div>
+        <div class="text-container">
+            <h2 class="about-title">ABOUT ME</h2>
+            <h1 class="about-name">IMANUEL ATAAMA</h1>
+        </div>
+        <section class="box">
+                <p class="about-description">Hello, I'm Imanuel Ataama, a <strong>Frontend Engineer</strong> with a passion for creating responsive and interactive user interfaces. I have been the <strong>Head of University Spirituality UKM</strong> and a <strong>Mentor Assistant</strong> at Ruangguru, with real results of increasing participants' understanding by <em>5%</em>.</p>
+            <p class="contact">+62 852 3839 8435 | imanuelaataama11@gmail.com</p>
+            </section>
+    </section>
+
+    <section id="portofolio" class="portfolio-container">
+        <h2 class="portfolio-title section">PORTOFOLIO</h2>
+        <div class="portfolio-grid section">
+            <div class="portfolio-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="/static/assets/image/ukm.jpg" alt="UKM">
+                        <h3>UKM Kerohanian Katolik</h3>
+                    </div>
+                    <div class="card-back">
+                        <h3>UKM Kerohanian Katolik</h3>
+                        <p>Aktif dalam kegiatan keagamaan di kampus, mengadakan seminar dan diskusi rutin.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="/static/assets/image/mentor.jpg" alt="Mentor">
+                        <h3>Asisten Mentor MSIB</h3>
+                    </div>
+                    <div class="card-back">
+                        <h3>Asisten Mentor MSIB</h3>
+                        <p>Memberikan bimbingan kepada mahasiswa dalam program studi independen.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="/static/assets/image/study.jpg" alt="Study">
+                        <h3>STUDY</h3>
+                    </div>
+                    <div class="card-back">
+                        <h3>STUDY</h3>
+                        <p>Penelitian dan pengembangan dalam bidang teknologi berbasis AI.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="study" class="study-section">
+        <div class="wrap-study section">
+            <div class="study-content section">
+                <h2 class="study-title">MY STUDY</h2>
+                <p class="study-description">
+                    My thesis is entitled DenseNet121 Optimization using Genetic Algorithm with Downsampling and Dataset Subset Augmentation in Deep Learning Based Garbage Classification.
+                    The implementation I made is an interface application in the form of a simple website for garbage detection.
+                </p>
+        
+                <div class="study-list">
+                    <div class="study-item">
+                        <img src="/static/assets/image/icon.png" alt="Downsampling Icon">
+                        <div>
+                            <h3>Downsampling</h3>
+                            <p>Applied at the preprocessing stage to reduce dimensionality.</p>
+                        </div>
+                    </div>
+        
+                    <div class="study-item">
+                        <img src="/static/assets/image/icon.png" alt="Dataset Subset Augmentation Icon">
+                        <div>
+                            <h3>Dataset Subset Augmentation</h3>
+                            <p>Applied at the Augmentation stage to enhance the data in some classes.</p>
+                        </div>
+                    </div>
+        
+                    <div class="study-item">
+                        <img src="/static/assets/image/icon.png" alt="Genetic Algorithm Icon">
+                        <div>
+                            <h3>Genetic Algorithm</h3>
+                            <p>Applied to the training stage to get the number of neurons and dropout rate in layer 1 and layer 2.</p>
+                        </div>
+                    </div>
+                </div>
+        
+                <a <a href="/image_inference"><button class="inference-btn">Image Inference</button></a>
+            </div>
+        
+            <div class="study-image">
+                <img src="/static/assets/image/image.png" alt="Robot Illustration">
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 PACEEL. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('nav ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+    
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 70, // Sesuaikan dengan tinggi header
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const sections = document.querySelectorAll(".section");
+
+            const observer = new IntersectionObserver(
+                (entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                            entry.target.classList.remove("hidden");
+                        } else {
+                            entry.target.classList.add("hidden");
+                            entry.target.classList.remove("visible");
+                        }
+                    });
+                },
+                { threshold: 0.2 }
+            );
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+        function checkScreenSize() {
+            if (window.innerWidth < 1024) { 
+                document.body.classList.add("mobile-blocked");
+            } else {
+                document.body.classList.remove("mobile-blocked");
+            }
+        }
+        
+        // Cek saat halaman dimuat dan saat layar diubah
+        checkScreenSize();
+        window.addEventListener("resize", checkScreenSize);        
+    </script>
+    <script src="/static/assets/js/main.js"></script>
+</body>
+</html>
